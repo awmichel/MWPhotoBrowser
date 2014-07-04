@@ -83,9 +83,11 @@
     _didSavePreviousStateOfNavBar = NO;
     _navigationBarStyle = UIBarStyleDefault;
     _navigationBarTintColor = nil;
+    _navigationBarBarTintColor = nil;
     _navigationBarBackgroundImage = nil;
     _toolbarBarStyle = UIBarStyleDefault;
     _toolbarTintColor = nil;
+    _toolbarBarTintColor = nil;
     _toolbarBackgroundImage = nil;
     _backgroundColor = [UIColor whiteColor];
     _progressColor = [UIColor grayColor];
@@ -174,7 +176,7 @@
     _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
     _toolbar.tintColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? _toolbarTintColor : nil;
     if ([_toolbar respondsToSelector:@selector(setBarTintColor:)]) {
-        _toolbar.barTintColor = nil;
+        _toolbar.barTintColor = _toolbarBarTintColor;
     }
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
         [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
@@ -458,7 +460,7 @@
     UINavigationBar *navBar = self.navigationController.navigationBar;
     navBar.tintColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? _navigationBarTintColor : nil;
     if ([navBar respondsToSelector:@selector(setBarTintColor:)]) {
-        navBar.barTintColor = nil;
+        navBar.barTintColor = _navigationBarBarTintColor;
         navBar.shadowImage = nil;
     }
     navBar.translucent = YES;
